@@ -21,7 +21,13 @@ Cloudflare Pages is git-connected to this repository:
 
 - **Production branch:** `main`
 - **Framework preset:** None
-- **Build command:** fetch `site/data/feed.json` from the private pilot repo (GitHub contents API, using a read-only fine-grained token in the `PRIVATE_REPO_TOKEN` environment variable), then `python3 site/build.py`
+- **Build command** (guard makes a missing variable fail loudly instead of a bare 401):
+
+  ```
+  test -n "$PRIVATE_REPO_TOKEN" || { echo "PRIVATE_REPO_TOKEN is not set"; exit 1; } && mkdir -p site/data && curl -sSL --fail -H "Authorization: Bearer $PRIVATE_REPO_TOKEN" -H "Accept: application/vnd.github.raw" "https://api.github.com/repos/metaviews/cp-7-29-15/contents/site/data/feed.json?ref=main" -o site/data/feed.json && python3 site/build.py
+  ```
+
+- **Variable:** `PRIVATE_REPO_TOKEN` must be added under the **Production** environment (Variables and Secrets → add for both Production and Preview to be safe).
 - **Build output directory:** `site/dist`
 
 Updates land when the pilot host exports a fresh feed, pushes it to the private repo, and pings the Pages deploy hook — so the feed updates semi-randomly with the work, not on a fixed editorial schedule.
