@@ -11,26 +11,18 @@ Only the **publication layer**:
 - `site/build.py` — stdlib static generator. Renders the home feed (three relevance tiers), the About page, and one page per taxonomy tag. No dependencies, no framework, no tracking.
 - `site/about.md` — About-page copy.
 
-**Feed content is not stored in this repository.** At build time the site fetches the current feed (`site/data/feed.json` — titles, links, short excerpts, local timestamps, taxonomy tags) from the private pilot repository and renders it. One content source: items can be corrected or withdrawn at the source, and this repo's public history never accumulates content copies.
+**Feed content is never committed to this repository on any branch.** The pilot host renders the feed and publishes the built site to the `site` branch (see Build and deploy). One content source: items can be corrected or withdrawn at the source, and this repo's public history never accumulates content copies.
 
 Collection, scoring, classification, the source registry and all research live in the private pilot repository and are out of scope for this one.
 
 ## Build and deploy
 
-Cloudflare Pages is git-connected to this repository:
+There is **no build on Cloudflare's side and no deploy credentials anywhere**. The pilot host is the publisher:
 
-- **Production branch:** `main`
-- **Framework preset:** None
-- **Build command** (guard makes a missing variable fail loudly instead of a bare 401):
-
-  ```
-  test -n "$PRIVATE_REPO_TOKEN" || { echo "PRIVATE_REPO_TOKEN is not set"; exit 1; } && mkdir -p site/data && curl -sSL --fail -H "Authorization: Bearer $PRIVATE_REPO_TOKEN" -H "Accept: application/vnd.github.raw" "https://api.github.com/repos/metaviews/cp-7-29-15/contents/site/data/feed.json?ref=main" -o site/data/feed.json && python3 site/build.py
-  ```
-
-- **Variable:** `PRIVATE_REPO_TOKEN` must be added under the **Production** environment (Variables and Secrets → add for both Production and Preview to be safe).
-- **Build output directory:** `site/dist`
-
-Updates land when the pilot host exports a fresh feed, pushes it to the private repo, and pings the Pages deploy hook — so the feed updates semi-randomly with the work, not on a fixed editorial schedule.
+- The host exports the feed, builds the site, and force-pushes the rendered output to the **`site` branch** of this repository as a **single squashed orphan commit** — so the branch always contains exactly the current publication, public history never accumulates content copies, and withdrawn items vanish entirely.
+- Cloudflare Pages is git-connected to this repository with **production branch `site`**, no framework, and build output directory `dist` (the build command is empty — the branch is already built).
+- Every push to `site` triggers a deploy; the pilot host pings the Pages deploy hook after publishing, so updates land semi-randomly with the work, not on a fixed schedule.
+- The site code itself lives on `main` (`site/build.py`, `site/about.md`); feed content is never committed to this repository in any branch.
 
 ## Feedback
 
