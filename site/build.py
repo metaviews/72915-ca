@@ -2,7 +2,14 @@
 """Static generator for the 72915.ca public site (stdlib only).
 
 Reads data/feed.json (produced by scripts/export_public_feed.py in the
-main pilot repo) and about.md, writes dist/index.html and dist/about.html.
+main pilot repo), data/wom.json (scripts/export_word_of_mouth.py, from the
+muse-data community corpus — front matter + topic links only) and
+data/profiles.json (hand-curated directory), writes dist/index.html,
+dist/about.html and dist/tags/*.html.
+
+Home is three columns: district feed (news, left), word of mouth
+(community discussion, middle), directory (curated profiles, right).
+Columns stack on narrow screens in that order.
 
 Design language mirrors the admin dashboard (settled unslop pass):
 warm stone neutrals, ink-blue civic accent used sparingly, serif page
@@ -33,6 +40,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .wrap { max-width: 680px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+.wrap.wide { max-width: 1260px; }
 .masthead { margin-bottom: 0.4rem; }
 .masthead a { text-decoration: none; color: inherit; }
 h1 {
@@ -59,6 +67,25 @@ nav a:hover { text-decoration: underline; }
   font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
   font-size: 0.75rem; color: var(--faint); margin: 1.4rem 0 0;
 }
+/* home: three columns */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
+  margin-top: 0.6rem;
+}
+.col { min-width: 0; padding: 0 1.6rem; }
+.col-news { padding-left: 0; }
+.col-wom { border-left: 1px solid var(--hairline); }
+.col-dir { padding-right: 0; border-left: 1px solid var(--hairline); }
+.colhead {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin: 1.4rem 0 0.2rem;
+}
+.colid { font-size: 0.8rem; color: var(--faint); margin: 0 0 0.4rem; }
+.colid a { color: var(--accent); text-decoration: none; }
+.colid a:hover { text-decoration: underline; }
 .item { padding: 1.15rem 0; border-bottom: 1px solid var(--hairline); }
 .item:last-child { border-bottom: 0; }
 .item.lead { padding: 1.5rem 0; }
@@ -83,6 +110,57 @@ nav a:hover { text-decoration: underline; }
 .item h2 a { color: var(--ink); text-decoration: none; }
 .item h2 a:hover { color: var(--accent); text-decoration: underline; }
 .item p { margin: 0; font-size: 0.92rem; color: var(--muted); }
+/* word of mouth */
+.thread { padding: 0.95rem 0; border-bottom: 1px solid var(--hairline); }
+.thread:last-child { border-bottom: 0; }
+.thread .twhen {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.7rem; color: var(--faint); letter-spacing: 0.03em;
+  margin-bottom: 0.2rem;
+}
+.thread h4 {
+  font: 500 0.98rem/1.4 "Charter", "Bitstream Charter", Georgia, serif;
+  margin: 0 0 0.25rem;
+}
+.thread h4 a { color: var(--ink); text-decoration: none; }
+.thread h4 a:hover { color: var(--accent); text-decoration: underline; }
+.thread .tgroup { font-size: 0.8rem; color: var(--muted); margin: 0; }
+.thread .tmeta {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.68rem; color: var(--faint); margin: 0.3rem 0 0;
+}
+/* directory */
+.profile { padding: 0.95rem 0; border-bottom: 1px solid var(--hairline); }
+.profile:last-child { border-bottom: 0; }
+.profile .ptype {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.66rem; color: var(--accent); letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 0.2rem;
+}
+.profile h4 {
+  font: 500 1.02rem/1.35 "Charter", "Bitstream Charter", Georgia, serif;
+  margin: 0 0 0.3rem;
+}
+.profile p { margin: 0; font-size: 0.85rem; color: var(--muted); }
+.profile ul {
+  list-style: none; margin: 0.55rem 0 0; padding: 0;
+  font-size: 0.8rem; color: var(--body);
+}
+.profile li { padding: 0.3rem 0 0.3rem 0.9rem; position: relative; }
+.profile li::before {
+  content: ""; position: absolute; left: 0; top: 0.72em;
+  width: 0.32em; height: 0.32em; background: var(--faint);
+}
+.profile .plink {
+  display: inline-block; margin-top: 0.55rem;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; color: var(--accent); text-decoration: none;
+}
+.profile .plink:hover { text-decoration: underline; }
+.quiet {
+  font-size: 0.82rem; color: var(--faint); padding: 1rem 0;
+  font-style: italic;
+}
 footer {
   margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--hairline);
   font-size: 0.8rem; color: var(--faint);
@@ -117,6 +195,18 @@ footer a:hover { text-decoration: underline; }
 .page li { margin-bottom: 0.4rem; }
 .page strong { color: var(--ink); }
 .sq { display: inline-block; width: 0.5em; height: 0.5em; background: var(--accent); margin-right: 0.5em; }
+@media (max-width: 1060px) {
+  .grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .col-dir {
+    grid-column: 1 / -1; border-left: 0; padding: 0 0 1.6rem;
+    border-top: 1px solid var(--hairline);
+  }
+}
+@media (max-width: 760px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .col { padding: 0; border-left: 0; }
+  .col-wom { border-top: 1px solid var(--hairline); }
+}
 @media (max-width: 480px) { h1 { font-size: 2.6rem; } }
 """
 
@@ -175,9 +265,11 @@ def tag_links(item: dict, base: str = "") -> str:
     )
 
 
-def page(title_aria: str, body: str, updated: str = "", base: str = "") -> str:
+def page(title_aria: str, body: str, updated: str = "", base: str = "",
+         wide: bool = False) -> str:
     current_feed = ' aria-current="page"' if title_aria == "72915" else ""
     current_about = ' aria-current="page"' if title_aria != "72915" else ""
+    wrap = "wrap wide" if wide else "wrap"
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -188,7 +280,7 @@ def page(title_aria: str, body: str, updated: str = "", base: str = "") -> str:
 <style>{CSS}</style>
 </head>
 <body>
-<div class="wrap">
+<div class="{wrap}">
   <div class="masthead"><a href="{base}index.html"><h1>7<span class="hwy">2</span>9<span class="hwy">1</span>5</h1></a></div>
   <div class="sub">Highway 7 · 29 · 15 — the Carleton Place district</div>
   <nav>
@@ -218,6 +310,41 @@ def rank_of(item: dict) -> float:
 
 def sort_key(item: dict):
     return (-rank_of(item), item.get("published") or item.get("discovered") or "")
+
+
+def colhead(title: str, intro: str = "") -> str:
+    intro_html = f'\n  <p class="colid">{intro}</p>' if intro else ""
+    return (f'<h3 class="colhead"><span class="sq"></span>'
+            f'{html.escape(title)}</h3>{intro_html}')
+
+
+def wom_thread(t: dict) -> str:
+    place = " · ".join(p for p in (t.get("group"), t.get("town")) if p)
+    meta = " · ".join(
+        f"{t[k]} {k}" for k in ("comments", "reactions") if t.get(k))
+    meta_html = (f'\n  <p class="tmeta">{html.escape(meta)}</p>'
+                 if meta else "")
+    return f"""<article class="thread">
+  <div class="twhen">{html.escape(t.get('date', ''))}</div>
+  <h4><a href="{html.escape(t['link'])}" rel="noopener">{html.escape(t['topic'])}</a></h4>
+  <p class="tgroup">{html.escape(place)}</p>{meta_html}
+</article>"""
+
+
+def profile_card(p: dict) -> str:
+    facts = ""
+    if p.get("facts"):
+        lis = "\n".join(f"  <li>{html.escape(f)}</li>" for f in p["facts"])
+        facts = f"\n<ul>\n{lis}\n</ul>"
+    links = " ".join(
+        f'<a class="plink" href="{html.escape(l["url"])}" rel="noopener">{html.escape(l["label"])} ↗</a>'
+        for l in p.get("links", []))
+    links_html = f"\n  <div>{links}</div>" if links else ""
+    return f"""<article class="profile">
+  <div class="ptype">{html.escape(p.get('type', ''))} · {html.escape(p.get('place', ''))}</div>
+  <h4>{html.escape(p['name'])}</h4>
+  <p>{html.escape(p.get('blurb', ''))}</p>{facts}{links_html}
+</article>"""
 
 
 def main() -> None:
@@ -259,12 +386,54 @@ def main() -> None:
 </section>"""
         )
 
+    # --- word of mouth (middle column): community discussion watch ---
+    wom_path = HERE / "data" / "wom.json"
+    wom_body = colhead(
+        "Word of mouth",
+        "What the district is talking about, as seen in local community "
+        "groups — links go to the original discussions.")
+    if wom_path.exists():
+        wom = json.loads(wom_path.read_text())
+        if wom.get("items"):
+            wom_body += "\n" + "\n".join(wom_thread(t) for t in wom["items"])
+        else:
+            wom_body += '\n<p class="quiet">No current threads.</p>'
+    else:
+        wom_body += '\n<p class="quiet">Community discussion watch connecting.</p>'
+
+    # --- directory (right column): curated profiles ---
+    dir_path = HERE / "data" / "profiles.json"
+    dir_body = colhead(
+        "Directory",
+        "People and organizations of the district, curated by us.")
+    n_dir = 0
+    if dir_path.exists():
+        profiles = json.loads(dir_path.read_text())
+        n_dir = len(profiles.get("profiles", []))
+        if n_dir:
+            dir_body += "\n" + "\n".join(
+                profile_card(p) for p in profiles["profiles"])
+        else:
+            dir_body += '\n<p class="quiet">In curation.</p>'
+    else:
+        dir_body += '\n<p class="quiet">In curation.</p>'
+
+    grid = (
+        '<div class="grid">\n'
+        f'<div class="col col-news">{colhead("District feed")}\n'
+        + "\n".join(rows)
+        + '</div>\n'
+        f'<div class="col col-wom">{wom_body}</div>\n'
+        f'<div class="col col-dir">{dir_body}</div>\n'
+        '</div>'
+    )
+
     tier_note = f" · {len(lead)} lead" if lead else ""
     updated = (
         f'<div class="updated">Updated {html.escape(feed["generated_at"])}'
         f" · {len(items)} items{tier_note}</div>"
     )
-    (DIST / "index.html").write_text(page("72915", "\n".join(rows), updated))
+    (DIST / "index.html").write_text(page("72915", grid, updated, wide=True))
 
     # tag pages: every hashtag links to similar items on the site
     by_tag: dict = {}
@@ -282,7 +451,9 @@ def main() -> None:
     (DIST / "about.html").write_text(
         page("About — 72915", f'<div class="page">{md_to_html(about_md)}</div>')
     )
-    print(f"dist/: index.html ({len(items)} items), about.html")
+    n_wom = len(json.loads(wom_path.read_text())["items"]) if wom_path.exists() else 0
+    print(f"dist/: index.html ({len(items)} items, {n_wom} threads, "
+          f"{n_dir} profiles), about.html")
 
 
 if __name__ == "__main__":

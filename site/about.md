@@ -2,7 +2,7 @@
 
 The number is the district: Highway 7, Highway 29 and Highway 15 — the roads that tie Carleton Place and its neighbouring communities together.
 
-72915 is a public feed of information about that district: road work, council decisions, public notices, warnings, community news — short excerpts that link to the original public item.
+72915 is a public feed of information about that district, in three parts: the **district feed** (road work, council decisions, public notices, warnings, community news — short excerpts that link to the original public item), **word of mouth** (what the district is talking about, as seen in local community groups, with a link to each discussion), and a **directory** of people and organizations of the district, curated by us.
 
 ## What this is
 

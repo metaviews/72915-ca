@@ -1,0 +1,19 @@
+{
+  "updated": "2026-11-25",
+  "profiles": [
+    {
+      "name": "Thomas Cavanagh Construction Limited",
+      "type": "organization",
+      "place": "Ashton · Carleton Place",
+      "blurb": "Eastern Ontario contractor and aggregates producer — construction, asphalt, concrete, land development and homebuilding — founded in 1953 by Thomas Cavanagh with a single dump truck. More than 1,200 employees across three divisions.",
+      "facts": [
+        "Head office on Highway 7 in Ashton since 1984; a concrete plant operates on Industrial Avenue in Carleton Place.",
+        "Rebuilt the historic mill in Almonte as the Enerdu hydroelectric facility, completed 2018.",
+        "Founder's $1,000,000 gift to the Carleton Place & District Memorial Hospital named its emergency wing; the Thomas Cavanagh Foundation continues the giving."
+      ],
+      "links": [
+        {"label": "thomascavanagh.ca", "url": "https://thomascavanagh.ca/"}
+      ]
+    }
+  ]
+}
