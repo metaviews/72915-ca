@@ -204,12 +204,20 @@ def page(title_aria: str, body: str, updated: str = "", base: str = "") -> str:
 """
 
 
-LEAD_MIN = 85.0        # lead display tier
-STANDARD_MIN = 70.0    # standard feed tier; below this -> compact "Also noted"
+LEAD_MIN = 60.0        # lead display tier — on the recency-weighted rank
+STANDARD_MIN = 20.0    # standard feed tier; below this -> compact "Also noted"
+# Ranks arrive from the exporter (score * exp(-age/24h)); they degrade as
+# items age, so typography follows newness: a stale high-score item slides
+# out of lead instead of squatting there (initiator direction 2026-11-25:
+# far more heavily weight what is new — it is news).
+
+
+def rank_of(item: dict) -> float:
+    return item.get("rank", item.get("score", 0.0))  # old feeds: score fallback
 
 
 def sort_key(item: dict):
-    return item.get("published") or item.get("discovered") or ""
+    return (-rank_of(item), item.get("published") or item.get("discovered") or "")
 
 
 def main() -> None:
@@ -217,13 +225,9 @@ def main() -> None:
     feed = json.loads((HERE / "data" / "feed.json").read_text())
     items = feed["items"]
 
-    lead = sorted((i for i in items if i.get("score", 0) >= LEAD_MIN), key=sort_key, reverse=True)
-    standard = sorted(
-        (i for i in items if STANDARD_MIN <= i.get("score", 0) < LEAD_MIN),
-        key=sort_key,
-        reverse=True,
-    )
-    noted = sorted((i for i in items if i.get("score", 0) < STANDARD_MIN), key=sort_key, reverse=True)
+    lead = [i for i in items if rank_of(i) >= LEAD_MIN]
+    standard = [i for i in items if STANDARD_MIN <= rank_of(i) < LEAD_MIN]
+    noted = [i for i in items if rank_of(i) < STANDARD_MIN]
 
     def article(it: dict, cls: str = "", base: str = "") -> str:
         klass = f" class=\"{cls}\"" if cls else ""
