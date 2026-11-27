@@ -1,17 +1,72 @@
 {
-  "generated_at": "2026-11-25 22:07",
+  "generated_at": "2026-11-27 15:54",
   "source": "Lanark County community discussion watch",
   "items": [
+    {
+      "group": "Living in Carleton Place",
+      "town": "Carleton Place",
+      "category": "cost-of-living",
+      "date": "2026-11-26",
+      "status": "ongoing",
+      "comments": "32",
+      "reactions": "7",
+      "link": "https://facebook.com/groups/livingincarletonplace/permalink/2951079811927794/",
+      "topic": "Trade-based college classes and certification barriers"
+    },
+    {
+      "group": "Smiths Falls Together!",
+      "town": "Smiths Falls",
+      "category": "utilities",
+      "date": "2026-11-26",
+      "status": "ongoing",
+      "comments": "11",
+      "reactions": "2",
+      "link": "https://facebook.com/groups/smithsfallstogether/permalink/29037389299297444/",
+      "topic": "Planned power outage in Smiths Falls"
+    },
+    {
+      "group": "Living in Carleton Place",
+      "town": "Carleton Place",
+      "category": "municipal-politics",
+      "date": "2026-11-26",
+      "status": "new",
+      "comments": "3",
+      "reactions": "17",
+      "link": "https://facebook.com/groups/livingincarletonplace/permalink/2953941931641582/",
+      "topic": "New e-bike rules coming to Carleton Place"
+    },
     {
       "group": "Carleton Place Neighbours and Community",
       "town": "Carleton Place",
       "category": "municipal-politics",
       "date": "2026-11-25",
-      "status": "new",
-      "comments": "14",
+      "status": "ongoing",
+      "comments": "16",
       "reactions": "0",
       "link": "https://facebook.com/groups/661204194653339/permalink/2381333722640369/",
       "topic": "Who owns the Sussex Street apartment building?"
+    },
+    {
+      "group": "Living in Carleton Place",
+      "town": "Carleton Place",
+      "category": "municipal-politics",
+      "date": "2026-11-25",
+      "status": "ongoing",
+      "comments": "10",
+      "reactions": "9",
+      "link": "https://facebook.com/groups/livingincarletonplace/permalink/2952542751781500/",
+      "topic": "Accessible parking: \"I'll only be a minute\" is no excuse"
+    },
+    {
+      "group": "Friends in Mississippi Mills",
+      "town": "Mississippi Mills",
+      "category": "utilities",
+      "date": "2026-11-25",
+      "status": "ongoing",
+      "comments": "9",
+      "reactions": "3",
+      "link": "https://facebook.com/groups/mississippimillsfriends/permalink/2475862539488605/",
+      "topic": "No water on Wolf Grove"
     },
     {
       "group": "Friends in Mississippi Mills",
@@ -19,8 +74,8 @@
       "category": "animal-by-laws",
       "date": "2026-11-24",
       "status": "ongoing",
-      "comments": "49",
-      "reactions": "61",
+      "comments": "67",
+      "reactions": "72",
       "link": "https://facebook.com/groups/mississippimillsfriends/permalink/2474228352985357/",
       "topic": "Should cats be leashed like dogs?"
     },
@@ -95,66 +150,11 @@
       "town": "Smiths Falls",
       "category": "municipal-politics",
       "date": "2026-11-24",
-      "status": "new",
-      "comments": "16",
+      "status": "ongoing",
+      "comments": "17",
       "reactions": "6",
       "link": "https://facebook.com/groups/smithsfallstogether/permalink/29010213112015063/",
       "topic": "Overnight parking tickets in Smiths Falls (second post)"
-    },
-    {
-      "group": "Carleton Place Neighbours and Community",
-      "town": "Carleton Place",
-      "category": "municipal-politics",
-      "date": "2026-11-24",
-      "status": "ongoing",
-      "comments": "14",
-      "reactions": "0",
-      "link": "https://facebook.com/groups/661204194653339/permalink/2380320249408383/",
-      "topic": "Construction blocks beach parking lot"
-    },
-    {
-      "group": "Carleton Place Neighbours and Community",
-      "town": "Carleton Place",
-      "category": "youth-behaviour",
-      "date": "2026-11-23",
-      "status": "ongoing",
-      "comments": "50",
-      "reactions": "119",
-      "link": "https://facebook.com/groups/661204194653339/permalink/2379415602832181/",
-      "topic": "Kids push shopping cart into car at FreshCo"
-    },
-    {
-      "group": "Friends in Mississippi Mills",
-      "town": "Mississippi Mills",
-      "category": "community-moderation",
-      "date": "2026-11-23",
-      "status": "ongoing",
-      "comments": "35",
-      "reactions": "117",
-      "link": "https://facebook.com/groups/mississippimillsfriends/permalink/2473348416406684/",
-      "topic": "Anonymous posts and nicknames in the group"
-    },
-    {
-      "group": "Smiths Falls Together!",
-      "town": "Smiths Falls",
-      "category": "policing",
-      "date": "2026-11-23",
-      "status": "ongoing",
-      "comments": "23",
-      "reactions": "9",
-      "link": "https://facebook.com/groups/smithsfallstogether/permalink/29007748252261549/",
-      "topic": "OPP policing costing for Smiths Falls"
-    },
-    {
-      "group": "Smiths Falls Together!",
-      "town": "Smiths Falls",
-      "category": "municipal-politics",
-      "date": "2026-11-23",
-      "status": "ongoing",
-      "comments": "5",
-      "reactions": "9",
-      "link": "https://facebook.com/groups/smithsfallstogether/permalink/29011840148519026/",
-      "topic": "Water tower questions at Smiths Falls council"
     }
   ]
 }

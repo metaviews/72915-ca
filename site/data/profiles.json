@@ -2,31 +2,17 @@
   "updated": "2026-11-27",
   "profiles": [
     {
-      "name": "Town of Carleton Place",
+      "name": "Carleton Place Canoe Club",
       "type": "organization",
       "place": "Carleton Place",
-      "blurb": "Lower-tier municipality at the crossroads of Highway 7 and Highway 15, spelled Carleton Place since an 1830 post office (the settlement began as Morphy's Falls in 1819 on the Mississippi River). Village in 1870, town in 1890; motto Fidelis.",
+      "blurb": "Canada's oldest continuously operating canoe club, founded in 1893 as the Ottawa Valley Canoe Association and reorganized under its present name in 1900. On the shores of the Mississippi River at Riverside Park, it has taught and raced paddlers of the district for over 130 years.",
       "facts": [
-        "Municipal office: 175 Bridge Street; council and committee work sits behind most items in the district feed.",
-        "Population 12,517 at the 2021 census — up 17.6% from 2016; the 2038 projection reaches 20,964.",
-        "Home of the oldest continuously operating Canoe Club in Canada; the Mississippi River runs through town."
+        "A charter member (1900) of the Canadian Canoe Association and the oldest club still in it; its first regatta ran at Lake Park in 1893.",
+        "Opened its membership to women in 1903 — among the first clubs anywhere to do so — and early ladies' war canoe championships were raced here.",
+        "A working origin of the town's paddling culture: sprint, high-performance, dragon boat and Paddle-ALL programs have produced numerous Canadian champions."
       ],
       "links": [
-        {"label": "carletonplace.ca", "url": "https://carletonplace.ca/"}
-      ]
-    },
-    {
-      "name": "Lanark County OPP",
-      "type": "organization",
-      "place": "Lanark County · Carleton Place",
-      "blurb": "Ontario Provincial Police detachment policing all eight municipalities of the county — Carleton Place, Mississippi Mills, Perth, Beckwith, Montague, Drummond/North Elmsley, Tay Valley and Lanark Highlands — on contract.",
-      "facts": [
-        "A detachment office operates in Carleton Place at 15 Coleman Street; the Lanark County detachment headquarters is at 75 Dufferin Street, Perth (East Region).",
-        "Community-safety discussions in the word-of-mouth column — thefts, break-ins, traffic — repeatedly cite the OPP's detachments and response practices.",
-        "Oversight sits with the Lanark County OPP Detachment Board, whose Carleton Place appointee is Councillor Dena Comley."
-      ],
-      "links": [
-        {"label": "opp.ca", "url": "https://www.opp.ca/"}
+        {"label": "cpcanoeclub.com", "url": "https://www.cpcanoeclub.com/"}
       ]
     },
     {
