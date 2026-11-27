@@ -394,6 +394,7 @@ def main() -> None:
         "groups — links go to the original discussions.")
     if wom_path.exists():
         wom = json.loads(wom_path.read_text())
+        wom_body += (f'\n<p class="colid">checked {html.escape(wom["generated_at"])}</p>')
         if wom.get("items"):
             wom_body += "\n" + "\n".join(wom_thread(t) for t in wom["items"])
         else:
@@ -405,7 +406,7 @@ def main() -> None:
     dir_path = HERE / "data" / "profiles.json"
     dir_body = colhead(
         "Directory",
-        "People and organizations of the district, curated by us.")
+        "People and organizations of the district.")
     n_dir = 0
     if dir_path.exists():
         profiles = json.loads(dir_path.read_text())

@@ -1,7 +1,18 @@
 {
-  "generated_at": "2026-11-25 17:17",
+  "generated_at": "2026-11-25 22:07",
   "source": "Lanark County community discussion watch",
   "items": [
+    {
+      "group": "Carleton Place Neighbours and Community",
+      "town": "Carleton Place",
+      "category": "municipal-politics",
+      "date": "2026-11-25",
+      "status": "new",
+      "comments": "14",
+      "reactions": "0",
+      "link": "https://facebook.com/groups/661204194653339/permalink/2381333722640369/",
+      "topic": "Who owns the Sussex Street apartment building?"
+    },
     {
       "group": "Friends in Mississippi Mills",
       "town": "Mississippi Mills",
@@ -144,16 +155,6 @@
       "reactions": "9",
       "link": "https://facebook.com/groups/smithsfallstogether/permalink/29011840148519026/",
       "topic": "Water tower questions at Smiths Falls council"
-    },
-    {
-      "group": "Carleton Place Neighbours and Community",
-      "town": "Carleton Place",
-      "category": "utilities",
-      "date": "2026-11-22",
-      "status": "baseline",
-      "comments": "31",
-      "link": "https://facebook.com/groups/661204194653339/permalink/2378048796302195/",
-      "topic": "Planned power outage communication"
     }
   ]
 }
