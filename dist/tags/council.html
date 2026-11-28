@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>#council — 72915</title>
+<meta name="description" content="A public feed of information about the Highway 7 / 29 / 15 district around Carleton Place, Ontario.">
+<style>
+:root {
+  --bg: #fdfcf9; --panel: #f6f3ed; --hairline: #e5dfd3;
+  --ink: #211d17; --body: #3a342b; --muted: #837b6d; --faint: #a39a89;
+  --accent: #234a73;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--body);
+  font: 16px/1.6 -apple-system, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 680px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+.wrap.wide { max-width: 1260px; }
+.masthead { margin-bottom: 0.4rem; }
+.masthead a { text-decoration: none; color: inherit; }
+h1 {
+  font: 500 3.4rem/1 "Charter", "Bitstream Charter", Georgia, serif;
+  letter-spacing: 0.04em; color: var(--ink); margin: 0;
+}
+h1 .hwy { color: var(--accent); }
+.sub {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em;
+  text-transform: uppercase; margin-top: 0.55rem;
+}
+nav {
+  margin: 1.6rem 0 0; padding: 0.65rem 0; border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+nav a {
+  color: var(--accent); text-decoration: none; font-size: 0.85rem;
+  margin-right: 1.4rem;
+}
+nav a[aria-current] { color: var(--ink); font-weight: 600; }
+nav a:hover { text-decoration: underline; }
+.updated {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.75rem; color: var(--faint); margin: 1.4rem 0 0;
+}
+/* home: three columns */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
+  margin-top: 0.6rem;
+}
+.col { min-width: 0; padding: 0 1.6rem; }
+.col-news { padding-left: 0; }
+.col-wom { border-left: 1px solid var(--hairline); }
+.col-dir { padding-right: 0; border-left: 1px solid var(--hairline); }
+.colhead {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin: 1.4rem 0 0.2rem;
+}
+.colid { font-size: 0.8rem; color: var(--faint); margin: 0 0 0.4rem; }
+.colid a { color: var(--accent); text-decoration: none; }
+.colid a:hover { text-decoration: underline; }
+.item { padding: 1.15rem 0; border-bottom: 1px solid var(--hairline); }
+.item:last-child { border-bottom: 0; }
+.item.lead { padding: 1.5rem 0; }
+.item.lead h2 { font-size: 1.5rem; line-height: 1.3; margin-bottom: 0.4rem; }
+.item.lead p { font-size: 0.95rem; color: var(--body); }
+.tag {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.7rem; color: var(--accent); text-decoration: none;
+  margin-left: 0.55rem;
+}
+.tag:hover { text-decoration: underline; }
+.noted .tag { margin-left: 0.5rem; font-size: 0.66rem; }
+.item .when {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; color: var(--faint); letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+}
+.item h2 {
+  font: 500 1.05rem/1.4 "Charter", "Bitstream Charter", Georgia, serif;
+  margin: 0 0 0.3rem;
+}
+.item h2 a { color: var(--ink); text-decoration: none; }
+.item h2 a:hover { color: var(--accent); text-decoration: underline; }
+.item p { margin: 0; font-size: 0.92rem; color: var(--muted); }
+/* word of mouth */
+.thread { padding: 0.95rem 0; border-bottom: 1px solid var(--hairline); }
+.thread:last-child { border-bottom: 0; }
+.thread .twhen {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.7rem; color: var(--faint); letter-spacing: 0.03em;
+  margin-bottom: 0.2rem;
+}
+.thread h4 {
+  font: 500 0.98rem/1.4 "Charter", "Bitstream Charter", Georgia, serif;
+  margin: 0 0 0.25rem;
+}
+.thread h4 a { color: var(--ink); text-decoration: none; }
+.thread h4 a:hover { color: var(--accent); text-decoration: underline; }
+.thread .tgroup { font-size: 0.8rem; color: var(--muted); margin: 0; }
+.thread .tmeta {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.68rem; color: var(--faint); margin: 0.3rem 0 0;
+}
+/* directory */
+.profile { padding: 0.95rem 0; border-bottom: 1px solid var(--hairline); }
+.profile:last-child { border-bottom: 0; }
+.profile .ptype {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.66rem; color: var(--accent); letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 0.2rem;
+}
+.profile h4 {
+  font: 500 1.02rem/1.35 "Charter", "Bitstream Charter", Georgia, serif;
+  margin: 0 0 0.3rem;
+}
+.profile p { margin: 0; font-size: 0.85rem; color: var(--muted); }
+.profile ul {
+  list-style: none; margin: 0.55rem 0 0; padding: 0;
+  font-size: 0.8rem; color: var(--body);
+}
+.profile li { padding: 0.3rem 0 0.3rem 0.9rem; position: relative; }
+.profile li::before {
+  content: ""; position: absolute; left: 0; top: 0.72em;
+  width: 0.32em; height: 0.32em; background: var(--faint);
+}
+.profile .plink {
+  display: inline-block; margin-top: 0.55rem;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; color: var(--accent); text-decoration: none;
+}
+.profile .plink:hover { text-decoration: underline; }
+.quiet {
+  font-size: 0.82rem; color: var(--faint); padding: 1rem 0;
+  font-style: italic;
+}
+footer {
+  margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--hairline);
+  font-size: 0.8rem; color: var(--faint);
+}
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+/* about */
+.noted { margin-top: 2.6rem; }
+.noted h3 {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 0.3rem;
+}
+.noted ul { list-style: none; margin: 0; padding: 0; }
+.noted li {
+  padding: 0.55rem 0; border-bottom: 1px solid var(--hairline);
+  font-size: 0.85rem;
+}
+.noted li:last-child { border-bottom: 0; }
+.noted .nwhen {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.68rem; color: var(--faint); margin-right: 0.7rem;
+}
+.noted a { color: var(--body); text-decoration: none; }
+.noted a:hover { color: var(--accent); text-decoration: underline; }
+.page h2 {
+  font: 500 1.25rem/1.3 "Charter", "Bitstream Charter", Georgia, serif;
+  color: var(--ink); margin: 2rem 0 0.5rem;
+}
+.page p, .page li { font-size: 0.95rem; }
+.page ul { padding-left: 1.2rem; }
+.page li { margin-bottom: 0.4rem; }
+.page strong { color: var(--ink); }
+.sq { display: inline-block; width: 0.5em; height: 0.5em; background: var(--accent); margin-right: 0.5em; }
+@media (max-width: 1060px) {
+  .grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .col-dir {
+    grid-column: 1 / -1; border-left: 0; padding: 0 0 1.6rem;
+    border-top: 1px solid var(--hairline);
+  }
+}
+@media (max-width: 760px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .col { padding: 0; border-left: 0; }
+  .col-wom { border-top: 1px solid var(--hairline); }
+}
+@media (max-width: 480px) { h1 { font-size: 2.6rem; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="masthead"><a href="../index.html"><h1>7<span class="hwy">2</span>9<span class="hwy">1</span>5</h1></a></div>
+  <div class="sub">Highway 7 · 29 · 15 — the Carleton Place district</div>
+  <nav>
+    <a href="../index.html">Feed</a>
+    <a href="../about.html" aria-current="page">About</a>
+  </nav>
+  <div class="updated">20 items</div>
+  <article class="item">
+  <div class="when">Nov 3, 2026 · 16:38 <a class="tag" href="../tags/development.html">#development</a> <a class="tag" href="../tags/housing.html">#housing</a> <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://carletonplace.ca/development-fee-changes-coming-january-1st-2027" rel="noopener">Development Fee Changes Coming January 1st, 2027</a></h2>
+  <p>The Town of Carleton Place is updating our Development Fees and Charges commencing January 1st, 2027. As part of an agreement for grant funding under the Housing Accelerator Fund, the Town undertook a comprehensive review of its development-related fees and charges (planning, engineering, and building) in order to…</p>
+</article>
+<article class="item">
+  <div class="when">Oct 19, 2026 · 15:58 <a class="tag" href="../tags/council.html">#council</a> <a class="tag" href="../tags/business.html">#business</a></div>
+  <h2><a href="https://www.lanarkcounty.ca/lanark_news/county-council-october-14-2026/" rel="noopener">County Council: October 14, 2026</a></h2>
+  <p>Here are highlights from the Lanark County Council meeting held Oct. 14, 2026. Business Retention and Expansion Program Update Received: Lanark County Council received a progress</p>
+</article>
+<article class="item">
+  <div class="when">Sep 28, 2026 · 09:49 <a class="tag" href="../tags/council.html">#council</a> <a class="tag" href="../tags/business.html">#business</a></div>
+  <h2><a href="https://www.lanarkcounty.ca/lanark_news/county-council-september-23-2026/" rel="noopener">County Council: September 23, 2026</a></h2>
+  <p>Here are highlights from the Lanark County Council meeting held Sept. 23, 2026. New Café Coming to Lanark Lodge: Lanark County Council has authorized using up</p>
+</article>
+<article class="item">
+  <div class="when">Sep 24, 2026 · 13:34 <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://www.lanarkcounty.ca/lanark_news/county-council-sept-16-2026/" rel="noopener">County Council Sept. 16, 2026</a></h2>
+  <p>Here are highlights from the Lanark County Council meeting held Sept. 16, 2026. Warden Kidd Declares War: Lanark County Council received an update on the spread</p>
+</article>
+<article class="item">
+  <div class="when">Sep 4, 2026 · 16:17 <a class="tag" href="../tags/district.html">#district</a> <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://beckwith.ca/notice-of-meeting-to-present-the-financial-statements-for-the-year-2025/" rel="noopener">NOTICE OF MEETING TO PRESENT THE FINANCIAL STATEMENTS FOR THE YEAR 2025</a></h2>
+  <p>In accordance with Municipal By-Law No. 2024-21, notice is hereby given that the Finance and Administration Committee of the Township of Beckwith will be presented the Financial Statement of the Corporation of the Township of Beckwith year ended December 31st, 2025, by KPMG at the Finance and Administration Committee…</p>
+</article>
+<article class="item">
+  <div class="when">Sep 1, 2026 · 09:52 <a class="tag" href="../tags/council.html">#council</a> <a class="tag" href="../tags/roads.html">#roads</a></div>
+  <h2><a href="https://www.lanarkcounty.ca/lanark_news/county-council-highlights-august-26-2026/" rel="noopener">County Council Highlights – August 26, 2026</a></h2>
+  <p>Here are highlights from the Lanark County Council meeting held Aug. 26, 2026. Highway Salt Tender Accepted: Lanark County Council has awarded a five-year contract for</p>
+</article>
+<article class="item">
+  <div class="when">Jun 15, 2026 · 09:23 <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://www.lanarkcounty.ca/lanark_news/county-council-highlights-june-10-2026/" rel="noopener">County Council Highlights – June 10, 2026</a></h2>
+  <p>Here are the highlights from the Lanark County Council meeting held June 10, 2026. Pride Month in Lanark County Proclaimed: Lanark County Warden Richard Kidd (Beckwith</p>
+</article>
+<article class="item">
+  <div class="when">Nov 22, 2026 · 13:46 <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://lanarkist.com/2026/11/22/seven-familiar-faces-four-more-years-carleton-place-mayor-talks-priorities-as-new-council-term-begins/" rel="noopener">Seven familiar faces, four more years: Carleton Place mayor talks priorities as new council term begins</a></h2>
+  <p>Fresh off being sworn in for his second term as mayor of Carleton Place, Toby Randell is looking ahead to another four years of fiscal restraint, steady growth and a possible overhaul of the town’s aging recreation complex. Following the Nov. 17 inaugural meeting of council, Randell spoke to Lanarkist</p>
+</article>
+<article class="item">
+  <div class="when">Nov 23, 2026 · 06:03 <a class="tag" href="../tags/district.html">#district</a> <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://lanarkleedstoday.ca/2026/11/23/perths-municipal-insurance-bill-climbs-five-per-cent-but-remains-within-budget/" rel="noopener">Perth’s municipal insurance bill climbs five per cent, but remains within budget</a></h2>
+  <p>The Town of Perth is facing a modest increase in its municipal insurance bill, but staff say the renewal remains manageable and within the town&#x27;s appr...</p>
+</article>
+<article class="item">
+  <div class="when">Nov 23, 2026 · 06:03 <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://lanarkleedstoday.ca/2026/11/23/mississippi-mills-council-begins-new-four-year-term-with-inaugural-ceremony/" rel="noopener">Mississippi Mills Council begins new four-year term with inaugural ceremony</a></h2>
+  <p>A new four-year chapter in Mississippi Mills municipal politics officially began Monday evening as Mayor Christa Lowry and the newly elected members o...</p>
+</article>
+<article class="item">
+  <div class="when">Nov 23, 2026 · 15:33 <a class="tag" href="../tags/council.html">#council</a> <a class="tag" href="../tags/community.html">#community</a></div>
+  <h2><a href="https://hometownnews.ca/smiths-falls-new-council-swearing-in-2026/" rel="noopener">Bagpipes and a packed house welcome Smiths Falls’ new council</a></h2>
+  <p>Family, supporters, community members and town staff packed council chambers Monday as Smiths Falls’ new council was sworn in, with Gordon Pipe Band piper Steve Brooke leading the procession. Town […]</p>
+</article>
+<article class="item">
+  <div class="when">Nov 23, 2026 · 19:42 <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://hometownnews.ca/perths-newly-elected-council-begins-term/" rel="noopener">McPherson calls for new era of leadership as Perth council takes office</a></h2>
+  <p>Perth’s newly elected council kept things simple and to the point at its inaugural meeting, with a packed gallery on hand to witness the start of a new four-year term. […]</p>
+</article>
+<article class="item">
+  <div class="when">Nov 24, 2026 · 08:04 <a class="tag" href="../tags/district.html">#district</a> <a class="tag" href="../tags/community.html">#community</a> <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://carletonplace.ca/international-day-of-persons-with-disabilities" rel="noopener">International Day of Persons with Disabilities</a></h2>
+  <p>WHEREAS, the United Nations has designated December 3 as the International Day of Persons with Disabilities to promote awareness, understanding, dignity, and the rights of persons with disabilities; and WHEREAS, the Town of Carleton Place recognizes that accessibility and inclusion are fundamental to creating a…</p>
+</article>
+<article class="item">
+  <div class="when">Nov 24, 2026 · 17:37 <a class="tag" href="../tags/district.html">#district</a> <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://hometownnews.ca/perth-century-old-stewart-park-trust-fund/" rel="noopener">Perth considers taking over century-old Stewart Park trust fund</a></h2>
+  <p>A century-old fund established to maintain Perth’s Stewart Park could soon be managed by the town, following an approach from Scotiatrust, which currently holds the money. At its Nov. 17 […]</p>
+</article>
+<article class="item">
+  <div class="when">Nov 25, 2026 · 16:54 <a class="tag" href="../tags/district.html">#district</a> <a class="tag" href="../tags/roads.html">#roads</a> <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://hometownnews.ca/smiths-falls-council-chambers-street-underpass/" rel="noopener">Chambers Street underpass under review as Smiths Falls provides infrastructure, budget updates</a></h2>
+  <p>A preliminary review of the Chambers Street underpass has been completed as Smiths Falls investigates potential repairs and determines ownership and maintenance responsibilities. The underpass was among several infrastructure updates […]</p>
+</article>
+<article class="item">
+  <div class="when">Nov 25, 2026 · 23:07 <a class="tag" href="../tags/district.html">#district</a> <a class="tag" href="../tags/council.html">#council</a> <a class="tag" href="../tags/safety.html">#safety</a></div>
+  <h2><a href="https://hometownnews.ca/smiths-falls-to-share-perth-court-security-costs/" rel="noopener">Smiths Falls to share Perth court security costs, lobby province for funding</a></h2>
+  <p>Smiths Falls is facing an additional expense of nearly $25,000 in 2027 to help cover court security and prisoner transportation costs at the Ontario Superior Court of Justice in Perth. […]</p>
+</article>
+<article class="item">
+  <div class="when">Nov 26, 2026 · 06:02 <a class="tag" href="../tags/district.html">#district</a> <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://lanarkleedstoday.ca/2026/11/26/andrew-tennant-named-lanark-countys-new-warden/" rel="noopener">Andrew Tennant named Lanark County’s new warden</a></h2>
+  <p>Andrew Tennant serves as Lanark County Warden for 2027. Photo supplied by Lanark County</p>
+</article>
+<article class="item">
+  <div class="when">Nov 26, 2026 · 12:37 <a class="tag" href="../tags/council.html">#council</a> <a class="tag" href="../tags/events.html">#events</a> <a class="tag" href="../tags/development.html">#development</a></div>
+  <h2><a href="https://hometownnews.ca/smiths-falls-water-tower-demolition-delayed/" rel="noopener">Smiths Falls water tower demolition pushed to spring 2027</a></h2>
+  <p>Despite efforts by the previous Smiths Falls council to have the town’s century-old water tower demolished before Christmas, the landmark will remain standing until spring 2027. Public works and utilities […]</p>
+</article>
+<article class="item">
+  <div class="when">Nov 26, 2026 · 13:44 <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://lanarkist.com/2026/11/26/carleton-place-deputy-mayor-andrew-tennant-acclaimed-as-2027-lanark-county-warden/" rel="noopener">Carleton Place Deputy Mayor Andrew Tennant acclaimed as 2027 Lanark County warden</a></h2>
+  <p>Carleton Place Deputy Mayor Andrew Tennant has officially been acclaimed as Lanark County&#x27;s 2027 after taking the oath of office during the county&#x27;s inaugural council meeting on Tuesday, November 24, 2026.</p>
+</article>
+<article class="item">
+  <div class="when">Nov 27, 2026 · 06:23 <a class="tag" href="../tags/district.html">#district</a> <a class="tag" href="../tags/council.html">#council</a> <a class="tag" href="../tags/community.html">#community</a></div>
+  <h2><a href="https://hometownnews.ca/rideau-lakes-recreation-cost-sharing-extension/" rel="noopener">Rideau Lakes recreation agreement: $154,000 extension gains unanimous support</a></h2>
+  <p>The Rideau Lakes recreation cost-sharing agreement with Smiths Falls could be extended through Dec. 31, 2027, at an estimated cost to the township of $154,000, while councillors are also seeking […]</p>
+</article>
+  <footer>A Metaviews initiative · <a href="../about.html">About</a></footer>
+</div>
+</body>
+</html>

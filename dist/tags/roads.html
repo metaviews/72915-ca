@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>#roads — 72915</title>
+<meta name="description" content="A public feed of information about the Highway 7 / 29 / 15 district around Carleton Place, Ontario.">
+<style>
+:root {
+  --bg: #fdfcf9; --panel: #f6f3ed; --hairline: #e5dfd3;
+  --ink: #211d17; --body: #3a342b; --muted: #837b6d; --faint: #a39a89;
+  --accent: #234a73;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--body);
+  font: 16px/1.6 -apple-system, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 680px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+.wrap.wide { max-width: 1260px; }
+.masthead { margin-bottom: 0.4rem; }
+.masthead a { text-decoration: none; color: inherit; }
+h1 {
+  font: 500 3.4rem/1 "Charter", "Bitstream Charter", Georgia, serif;
+  letter-spacing: 0.04em; color: var(--ink); margin: 0;
+}
+h1 .hwy { color: var(--accent); }
+.sub {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em;
+  text-transform: uppercase; margin-top: 0.55rem;
+}
+nav {
+  margin: 1.6rem 0 0; padding: 0.65rem 0; border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+nav a {
+  color: var(--accent); text-decoration: none; font-size: 0.85rem;
+  margin-right: 1.4rem;
+}
+nav a[aria-current] { color: var(--ink); font-weight: 600; }
+nav a:hover { text-decoration: underline; }
+.updated {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.75rem; color: var(--faint); margin: 1.4rem 0 0;
+}
+/* home: three columns */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
+  margin-top: 0.6rem;
+}
+.col { min-width: 0; padding: 0 1.6rem; }
+.col-news { padding-left: 0; }
+.col-wom { border-left: 1px solid var(--hairline); }
+.col-dir { padding-right: 0; border-left: 1px solid var(--hairline); }
+.colhead {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin: 1.4rem 0 0.2rem;
+}
+.colid { font-size: 0.8rem; color: var(--faint); margin: 0 0 0.4rem; }
+.colid a { color: var(--accent); text-decoration: none; }
+.colid a:hover { text-decoration: underline; }
+.item { padding: 1.15rem 0; border-bottom: 1px solid var(--hairline); }
+.item:last-child { border-bottom: 0; }
+.item.lead { padding: 1.5rem 0; }
+.item.lead h2 { font-size: 1.5rem; line-height: 1.3; margin-bottom: 0.4rem; }
+.item.lead p { font-size: 0.95rem; color: var(--body); }
+.tag {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.7rem; color: var(--accent); text-decoration: none;
+  margin-left: 0.55rem;
+}
+.tag:hover { text-decoration: underline; }
+.noted .tag { margin-left: 0.5rem; font-size: 0.66rem; }
+.item .when {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; color: var(--faint); letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+}
+.item h2 {
+  font: 500 1.05rem/1.4 "Charter", "Bitstream Charter", Georgia, serif;
+  margin: 0 0 0.3rem;
+}
+.item h2 a { color: var(--ink); text-decoration: none; }
+.item h2 a:hover { color: var(--accent); text-decoration: underline; }
+.item p { margin: 0; font-size: 0.92rem; color: var(--muted); }
+/* word of mouth */
+.thread { padding: 0.95rem 0; border-bottom: 1px solid var(--hairline); }
+.thread:last-child { border-bottom: 0; }
+.thread .twhen {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.7rem; color: var(--faint); letter-spacing: 0.03em;
+  margin-bottom: 0.2rem;
+}
+.thread h4 {
+  font: 500 0.98rem/1.4 "Charter", "Bitstream Charter", Georgia, serif;
+  margin: 0 0 0.25rem;
+}
+.thread h4 a { color: var(--ink); text-decoration: none; }
+.thread h4 a:hover { color: var(--accent); text-decoration: underline; }
+.thread .tgroup { font-size: 0.8rem; color: var(--muted); margin: 0; }
+.thread .tmeta {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.68rem; color: var(--faint); margin: 0.3rem 0 0;
+}
+/* directory */
+.profile { padding: 0.95rem 0; border-bottom: 1px solid var(--hairline); }
+.profile:last-child { border-bottom: 0; }
+.profile .ptype {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.66rem; color: var(--accent); letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 0.2rem;
+}
+.profile h4 {
+  font: 500 1.02rem/1.35 "Charter", "Bitstream Charter", Georgia, serif;
+  margin: 0 0 0.3rem;
+}
+.profile p { margin: 0; font-size: 0.85rem; color: var(--muted); }
+.profile ul {
+  list-style: none; margin: 0.55rem 0 0; padding: 0;
+  font-size: 0.8rem; color: var(--body);
+}
+.profile li { padding: 0.3rem 0 0.3rem 0.9rem; position: relative; }
+.profile li::before {
+  content: ""; position: absolute; left: 0; top: 0.72em;
+  width: 0.32em; height: 0.32em; background: var(--faint);
+}
+.profile .plink {
+  display: inline-block; margin-top: 0.55rem;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; color: var(--accent); text-decoration: none;
+}
+.profile .plink:hover { text-decoration: underline; }
+.quiet {
+  font-size: 0.82rem; color: var(--faint); padding: 1rem 0;
+  font-style: italic;
+}
+footer {
+  margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--hairline);
+  font-size: 0.8rem; color: var(--faint);
+}
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+/* about */
+.noted { margin-top: 2.6rem; }
+.noted h3 {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 0.3rem;
+}
+.noted ul { list-style: none; margin: 0; padding: 0; }
+.noted li {
+  padding: 0.55rem 0; border-bottom: 1px solid var(--hairline);
+  font-size: 0.85rem;
+}
+.noted li:last-child { border-bottom: 0; }
+.noted .nwhen {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.68rem; color: var(--faint); margin-right: 0.7rem;
+}
+.noted a { color: var(--body); text-decoration: none; }
+.noted a:hover { color: var(--accent); text-decoration: underline; }
+.page h2 {
+  font: 500 1.25rem/1.3 "Charter", "Bitstream Charter", Georgia, serif;
+  color: var(--ink); margin: 2rem 0 0.5rem;
+}
+.page p, .page li { font-size: 0.95rem; }
+.page ul { padding-left: 1.2rem; }
+.page li { margin-bottom: 0.4rem; }
+.page strong { color: var(--ink); }
+.sq { display: inline-block; width: 0.5em; height: 0.5em; background: var(--accent); margin-right: 0.5em; }
+@media (max-width: 1060px) {
+  .grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .col-dir {
+    grid-column: 1 / -1; border-left: 0; padding: 0 0 1.6rem;
+    border-top: 1px solid var(--hairline);
+  }
+}
+@media (max-width: 760px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .col { padding: 0; border-left: 0; }
+  .col-wom { border-top: 1px solid var(--hairline); }
+}
+@media (max-width: 480px) { h1 { font-size: 2.6rem; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="masthead"><a href="../index.html"><h1>7<span class="hwy">2</span>9<span class="hwy">1</span>5</h1></a></div>
+  <div class="sub">Highway 7 · 29 · 15 — the Carleton Place district</div>
+  <nav>
+    <a href="../index.html">Feed</a>
+    <a href="../about.html" aria-current="page">About</a>
+  </nav>
+  <div class="updated">8 items</div>
+  <article class="item">
+  <div class="when">Sep 1, 2026 · 09:52 <a class="tag" href="../tags/council.html">#council</a> <a class="tag" href="../tags/roads.html">#roads</a></div>
+  <h2><a href="https://www.lanarkcounty.ca/lanark_news/county-council-highlights-august-26-2026/" rel="noopener">County Council Highlights – August 26, 2026</a></h2>
+  <p>Here are highlights from the Lanark County Council meeting held Aug. 26, 2026. Highway Salt Tender Accepted: Lanark County Council has awarded a five-year contract for</p>
+</article>
+<article class="item">
+  <div class="when">Jun 11, 2026 · 10:50 <a class="tag" href="../tags/district.html">#district</a> <a class="tag" href="../tags/roads.html">#roads</a> <a class="tag" href="../tags/development.html">#development</a></div>
+  <h2><a href="https://www.lanarkcounty.ca/lanark_news/lanark-county-hosting-public-drop-in-events-for-transportation-master-plan-update/" rel="noopener">Lanark County hosting public drop-in events for Transportation Master Plan update</a></h2>
+  <p>Lanark County is undertaking an update of its current Transportation Master Plan (TMP) and is inviting the public to learn more and provide input to guide</p>
+</article>
+<article class="item">
+  <div class="when">Nov 22, 2026 · 16:47 <a class="tag" href="../tags/roads.html">#roads</a></div>
+  <h2><a href="https://lanarkist.com/2026/11/22/road-closures-and-traffic-delays-week-ending-nov-29-2026r/" rel="noopener">Road closures and traffic delays, week ending Nov. 29, 2026</a></h2>
+  <p>Drivers across Lanark County and Smiths Falls can expect several construction-related traffic impacts this week, including alternating lane closures on Highway 15, an ongoing closure at Strong Side Road and work beginning on the Canal Bridges Rehabilitation Project in Smiths Falls. On Highway 15 between Perth…</p>
+</article>
+<article class="item">
+  <div class="when">Nov 24, 2026 · 14:53 <a class="tag" href="../tags/roads.html">#roads</a> <a class="tag" href="../tags/development.html">#development</a></div>
+  <h2><a href="https://beckwith.ca/2026-12-15-public-meeting/" rel="noopener">Notice of Public Meeting: December 15, 2026</a></h2>
+  <p>SITE PLAN CONTROL APPROVAL SP-14-26Property Owner: 16297404 Canada Inc.Address: 2700 Ashton Station Road</p>
+</article>
+<article class="item">
+  <div class="when">Nov 25, 2026 · 02:17 <a class="tag" href="../tags/housing.html">#housing</a> <a class="tag" href="../tags/roads.html">#roads</a> <a class="tag" href="../tags/business.html">#business</a> <a class="tag" href="../tags/community.html">#community</a></div>
+  <h2><a href="https://hometownnews.ca/perths-committee-of-the-whole-housing-rentals/" rel="noopener">Perth committee tackles housing, river rentals, community programs and municipal business</a></h2>
+  <p>Perth’s committee of the whole dealt with a wide range of municipal business Nov. 17, including a proposal addressing housing, childcare and transit, a potential river rental operation, community initiatives, […]</p>
+</article>
+<article class="item">
+  <div class="when">Nov 25, 2026 · 06:04 <a class="tag" href="../tags/district.html">#district</a> <a class="tag" href="../tags/roads.html">#roads</a></div>
+  <h2><a href="https://lanarkleedstoday.ca/2026/11/25/smiths-falls-water-tower-removal-delayed-until-spring-2027/" rel="noopener">Smiths Falls water tower removal delayed until spring 2027</a></h2>
+  <p>Photo: MBC News</p>
+</article>
+<article class="item">
+  <div class="when">Nov 25, 2026 · 16:54 <a class="tag" href="../tags/district.html">#district</a> <a class="tag" href="../tags/roads.html">#roads</a> <a class="tag" href="../tags/council.html">#council</a></div>
+  <h2><a href="https://hometownnews.ca/smiths-falls-council-chambers-street-underpass/" rel="noopener">Chambers Street underpass under review as Smiths Falls provides infrastructure, budget updates</a></h2>
+  <p>A preliminary review of the Chambers Street underpass has been completed as Smiths Falls investigates potential repairs and determines ownership and maintenance responsibilities. The underpass was among several infrastructure updates […]</p>
+</article>
+<article class="item">
+  <div class="when">Nov 27, 2026 · 10:46 <a class="tag" href="../tags/safety.html">#safety</a> <a class="tag" href="../tags/roads.html">#roads</a></div>
+  <h2><a href="https://lanarkist.com/2026/11/27/report-of-suspected-impaired-driver-leads-to-charges-in-drummond-north-elmsley/" rel="noopener">Report of suspected impaired driver leads to charges in Drummond-North Elmsley</a></h2>
+  <p>A traffic stop in Drummond-North Elmsley led to impaired charges earlier this week According to Lanark OPP, officers received a report of a suspected impaired driver travelling along Drummond Concession 2 on Wednesday, Nov. 25, 2026. Police located the vehicle and conducted a traffic stop shortly after 7 p.m. After</p>
+</article>
+  <footer>A Metaviews initiative · <a href="../about.html">About</a></footer>
+</div>
+</body>
+</html>

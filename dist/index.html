@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>72915</title>
+<meta name="description" content="A public feed of information about the Highway 7 / 29 / 15 district around Carleton Place, Ontario.">
+<style>
+:root {
+  --bg: #fdfcf9; --panel: #f6f3ed; --hairline: #e5dfd3;
+  --ink: #211d17; --body: #3a342b; --muted: #837b6d; --faint: #a39a89;
+  --accent: #234a73;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--body);
+  font: 16px/1.6 -apple-system, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 680px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+.wrap.wide { max-width: 1260px; }
+.masthead { margin-bottom: 0.4rem; }
+.masthead a { text-decoration: none; color: inherit; }
+h1 {
+  font: 500 3.4rem/1 "Charter", "Bitstream Charter", Georgia, serif;
+  letter-spacing: 0.04em; color: var(--ink); margin: 0;
+}
+h1 .hwy { color: var(--accent); }
+.sub {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em;
+  text-transform: uppercase; margin-top: 0.55rem;
+}
+nav {
+  margin: 1.6rem 0 0; padding: 0.65rem 0; border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+nav a {
+  color: var(--accent); text-decoration: none; font-size: 0.85rem;
+  margin-right: 1.4rem;
+}
+nav a[aria-current] { color: var(--ink); font-weight: 600; }
+nav a:hover { text-decoration: underline; }
+.updated {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.75rem; color: var(--faint); margin: 1.4rem 0 0;
+}
+/* home: three columns */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
+  margin-top: 0.6rem;
+}
+.col { min-width: 0; padding: 0 1.6rem; }
+.col-news { padding-left: 0; }
+.col-wom { border-left: 1px solid var(--hairline); }
+.col-dir { padding-right: 0; border-left: 1px solid var(--hairline); }
+.colhead {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin: 1.4rem 0 0.2rem;
+}
+.colid { font-size: 0.8rem; color: var(--faint); margin: 0 0 0.4rem; }
+.colid a { color: var(--accent); text-decoration: none; }
+.colid a:hover { text-decoration: underline; }
+.item { padding: 1.15rem 0; border-bottom: 1px solid var(--hairline); }
+.item:last-child { border-bottom: 0; }
+.item.lead { padding: 1.5rem 0; }
+.item.lead h2 { font-size: 1.5rem; line-height: 1.3; margin-bottom: 0.4rem; }
+.item.lead p { font-size: 0.95rem; color: var(--body); }
+.tag {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.7rem; color: var(--accent); text-decoration: none;
+  margin-left: 0.55rem;
+}
+.tag:hover { text-decoration: underline; }
+.noted .tag { margin-left: 0.5rem; font-size: 0.66rem; }
+.item .when {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; color: var(--faint); letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+}
+.item h2 {
+  font: 500 1.05rem/1.4 "Charter", "Bitstream Charter", Georgia, serif;
+  margin: 0 0 0.3rem;
+}
+.item h2 a { color: var(--ink); text-decoration: none; }
+.item h2 a:hover { color: var(--accent); text-decoration: underline; }
+.item p { margin: 0; font-size: 0.92rem; color: var(--muted); }
+/* word of mouth */
+.thread { padding: 0.95rem 0; border-bottom: 1px solid var(--hairline); }
+.thread:last-child { border-bottom: 0; }
+.thread .twhen {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.7rem; color: var(--faint); letter-spacing: 0.03em;
+  margin-bottom: 0.2rem;
+}
+.thread h4 {
+  font: 500 0.98rem/1.4 "Charter", "Bitstream Charter", Georgia, serif;
+  margin: 0 0 0.25rem;
+}
+.thread h4 a { color: var(--ink); text-decoration: none; }
+.thread h4 a:hover { color: var(--accent); text-decoration: underline; }
+.thread .tgroup { font-size: 0.8rem; color: var(--muted); margin: 0; }
+.thread .tmeta {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.68rem; color: var(--faint); margin: 0.3rem 0 0;
+}
+/* directory */
+.profile { padding: 0.95rem 0; border-bottom: 1px solid var(--hairline); }
+.profile:last-child { border-bottom: 0; }
+.profile .ptype {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.66rem; color: var(--accent); letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 0.2rem;
+}
+.profile h4 {
+  font: 500 1.02rem/1.35 "Charter", "Bitstream Charter", Georgia, serif;
+  margin: 0 0 0.3rem;
+}
+.profile p { margin: 0; font-size: 0.85rem; color: var(--muted); }
+.profile ul {
+  list-style: none; margin: 0.55rem 0 0; padding: 0;
+  font-size: 0.8rem; color: var(--body);
+}
+.profile li { padding: 0.3rem 0 0.3rem 0.9rem; position: relative; }
+.profile li::before {
+  content: ""; position: absolute; left: 0; top: 0.72em;
+  width: 0.32em; height: 0.32em; background: var(--faint);
+}
+.profile .plink {
+  display: inline-block; margin-top: 0.55rem;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; color: var(--accent); text-decoration: none;
+}
+.profile .plink:hover { text-decoration: underline; }
+.quiet {
+  font-size: 0.82rem; color: var(--faint); padding: 1rem 0;
+  font-style: italic;
+}
+footer {
+  margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--hairline);
+  font-size: 0.8rem; color: var(--faint);
+}
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+/* about */
+.noted { margin-top: 2.6rem; }
+.noted h3 {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 0.3rem;
+}
+.noted ul { list-style: none; margin: 0; padding: 0; }
+.noted li {
+  padding: 0.55rem 0; border-bottom: 1px solid var(--hairline);
+  font-size: 0.85rem;
+}
+.noted li:last-child { border-bottom: 0; }
+.noted .nwhen {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 0.68rem; color: var(--faint); margin-right: 0.7rem;
+}
+.noted a { color: var(--body); text-decoration: none; }
+.noted a:hover { color: var(--accent); text-decoration: underline; }
+.page h2 {
+  font: 500 1.25rem/1.3 "Charter", "Bitstream Charter", Georgia, serif;
+  color: var(--ink); margin: 2rem 0 0.5rem;
+}
+.page p, .page li { font-size: 0.95rem; }
+.page ul { padding-left: 1.2rem; }
+.page li { margin-bottom: 0.4rem; }
+.page strong { color: var(--ink); }
+.sq { display: inline-block; width: 0.5em; height: 0.5em; background: var(--accent); margin-right: 0.5em; }
+@media (max-width: 1060px) {
+  .grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .col-dir {
+    grid-column: 1 / -1; border-left: 0; padding: 0 0 1.6rem;
+    border-top: 1px solid var(--hairline);
+  }
+}
+@media (max-width: 760px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .col { padding: 0; border-left: 0; }
+  .col-wom { border-top: 1px solid var(--hairline); }
+}
+@media (max-width: 480px) { h1 { font-size: 2.6rem; } }
+</style>
+</head>
+<body>
+<div class="wrap wide">
+  <div class="masthead"><a href="index.html"><h1>7<span class="hwy">2</span>9<span class="hwy">1</span>5</h1></a></div>
+  <div class="sub">Highway 7 · 29 · 15 — the Carleton Place district</div>
+  <nav>
+    <a href="index.html" aria-current="page">Feed</a>
+    <a href="about.html">About</a>
+  </nav>
+  <div class="updated">Updated 2026-11-28 07:07 · 60 items</div>
+  <div class="grid">
+<div class="col col-news"><h3 class="colhead"><span class="sq"></span>District feed</h3>
+<article class="item">
+  <div class="when">Nov 27, 2026 · 10:46 <a class="tag" href="tags/safety.html">#safety</a> <a class="tag" href="tags/roads.html">#roads</a></div>
+  <h2><a href="https://lanarkist.com/2026/11/27/report-of-suspected-impaired-driver-leads-to-charges-in-drummond-north-elmsley/" rel="noopener">Report of suspected impaired driver leads to charges in Drummond-North Elmsley</a></h2>
+  <p>A traffic stop in Drummond-North Elmsley led to impaired charges earlier this week According to Lanark OPP, officers received a report of a suspected impaired driver travelling along Drummond Concession 2 on Wednesday, Nov. 25, 2026. Police located the vehicle and conducted a traffic stop shortly after 7 p.m. After</p>
+</article>
+<article class="item">
+  <div class="when">Nov 27, 2026 · 09:47 <a class="tag" href="tags/community.html">#community</a> <a class="tag" href="tags/safety.html">#safety</a> <a class="tag" href="tags/health.html">#health</a></div>
+  <h2><a href="https://lanarkleedstoday.ca/2026/11/27/silence-broken-group-chat-could-restorative-justice-offer-ipv-survivors-another-path-to-justice/" rel="noopener">Silence Broken: Group chat – Could restorative justice offer IPV survivors another path to justice?</a></h2>
+  <p>A community conversation in Lanark County will explore whether restorative justice could offer another option for some survivors of intimate partner v...</p>
+</article>
+<article class="item">
+  <div class="when">Nov 27, 2026 · 06:00 <a class="tag" href="tags/community.html">#community</a></div>
+  <h2><a href="https://lanarkleedstoday.ca/2026/11/27/the-hunger-stop-looking-for-tenant-to-take-over-former-carleton-place-location/" rel="noopener">The Hunger Stop looking for tenant to take over former Carleton Place location</a></h2>
+  <p>The Lanark County Food Bank - The Hunger Stop is looking for someone to take over the lease on its former location in Carleton Place. The organization...</p>
+</article>
+<article class="item">
+  <div class="when">Nov 27, 2026 · 08:33 <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/safety.html">#safety</a> <a class="tag" href="tags/environment.html">#environment</a></div>
+  <h2><a href="https://lanarkleedstoday.ca/2026/11/27/thousands-without-power-across-lanark-and-leeds-as-freezing-rain-and-high-winds-hit-the-region/" rel="noopener">Thousands without power across Lanark and Leeds as freezing rain and high winds hit the region</a></h2>
+  <p>Thousands of residents across the region are waking up without power Friday morning following a night of strong winds and a morning of freezing rain. ...</p>
+</article>
+<article class="item">
+  <div class="when">Nov 27, 2026 · 09:00 <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/development.html">#development</a> <a class="tag" href="tags/health.html">#health</a></div>
+  <h2><a href="https://hometownnews.ca/smiths-falls-long-term-care-home-planning/" rel="noopener">New $70M Smiths Falls long-term care home proposal moves to next planning stage at 361 Centre St.</a></h2>
+  <p>Plans for a 256-bed long-term care home at Rideau View Commons in Smiths Falls are moving to the next stage, with three planning applications scheduled for a December public meeting […]</p>
+</article>
+<article class="item">
+  <div class="when">Nov 27, 2026 · 06:23 <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/council.html">#council</a> <a class="tag" href="tags/community.html">#community</a></div>
+  <h2><a href="https://hometownnews.ca/rideau-lakes-recreation-cost-sharing-extension/" rel="noopener">Rideau Lakes recreation agreement: $154,000 extension gains unanimous support</a></h2>
+  <p>The Rideau Lakes recreation cost-sharing agreement with Smiths Falls could be extended through Dec. 31, 2027, at an estimated cost to the township of $154,000, while councillors are also seeking […]</p>
+</article>
+<article class="item">
+  <div class="when">Nov 27, 2026 · 06:01 <a class="tag" href="tags/community.html">#community</a> <a class="tag" href="tags/health.html">#health</a></div>
+  <h2><a href="https://lanarkleedstoday.ca/2026/11/27/smiths-falls-blood-donation-clinic-nearly-full-but-more-appointments-are-coming/" rel="noopener">Smiths Falls blood donation clinic nearly full, but more appointments are coming</a></h2>
+  <p>A blood donation clinic in Smiths Falls is nearly full, but there are already opportunities to give in the new year. Canadian Blood Services will hold...</p>
+</article>
+<section class="noted">
+  <h3>Also noted</h3>
+  <ul>
+<li>
+  <span class="nwhen">Nov 26, 2026</span>
+  <a href="https://hometownnews.ca/35_trees-of-care-smiths-falls/" rel="noopener">35 Trees of Care take root in support of Perth and Smiths Falls District Hospital</a>
+  <a class="tag" href="tags/health.html">#health</a> <a class="tag" href="tags/events.html">#events</a> <a class="tag" href="tags/community.html">#community</a>
+</li>
+<li>
+  <span class="nwhen">Nov 26, 2026</span>
+  <a href="https://lanarkist.com/2026/11/26/carleton-place-deputy-mayor-andrew-tennant-acclaimed-as-2027-lanark-county-warden/" rel="noopener">Carleton Place Deputy Mayor Andrew Tennant acclaimed as 2027 Lanark County warden</a>
+  <a class="tag" href="tags/council.html">#council</a>
+</li>
+<li>
+  <span class="nwhen">Nov 26, 2026</span>
+  <a href="https://hometownnews.ca/smiths-falls-water-tower-demolition-delayed/" rel="noopener">Smiths Falls water tower demolition pushed to spring 2027</a>
+  <a class="tag" href="tags/council.html">#council</a> <a class="tag" href="tags/events.html">#events</a> <a class="tag" href="tags/development.html">#development</a>
+</li>
+<li>
+  <span class="nwhen">Nov 26, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/26/railway-museum-says-2026-injected-10-million-in-local-economy/" rel="noopener">Railway Museum says 2026 injected $10 million in local economy</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/business.html">#business</a>
+</li>
+<li>
+  <span class="nwhen">Nov 26, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/26/drummond-north-elmsley-man-charged-in-intimate-partner-violence-investigation/" rel="noopener">Drummond-North Elmsley man charged in intimate partner violence investigation</a>
+  <a class="tag" href="tags/safety.html">#safety</a>
+</li>
+<li>
+  <span class="nwhen">Nov 26, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/26/andrew-tennant-named-lanark-countys-new-warden/" rel="noopener">Andrew Tennant named Lanark County’s new warden</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/council.html">#council</a>
+</li>
+<li>
+  <span class="nwhen">Nov 26, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/26/smiths-falls-delivers-a-mountain-of-generosity-with-more-than-22000-and-9000-pounds-of-food/" rel="noopener">Smiths Falls delivers a mountain of generosity with more than $22,000 and 9,000 pounds of food</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/community.html">#community</a>
+</li>
+<li>
+  <span class="nwhen">Nov 25, 2026</span>
+  <a href="https://hometownnews.ca/smiths-falls-to-share-perth-court-security-costs/" rel="noopener">Smiths Falls to share Perth court security costs, lobby province for funding</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/council.html">#council</a> <a class="tag" href="tags/safety.html">#safety</a>
+</li>
+<li>
+  <span class="nwhen">Nov 25, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/25/whats-good-two-hours-at-a-kettle-could-make-a-big-difference-for-lanark-county-families/" rel="noopener">What’s good? Two hours at a kettle could make a big difference for Lanark County families</a>
+  <a class="tag" href="tags/events.html">#events</a> <a class="tag" href="tags/community.html">#community</a>
+</li>
+<li>
+  <span class="nwhen">Nov 25, 2026</span>
+  <a href="https://hometownnews.ca/smiths-falls-council-chambers-street-underpass/" rel="noopener">Chambers Street underpass under review as Smiths Falls provides infrastructure, budget updates</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/roads.html">#roads</a> <a class="tag" href="tags/council.html">#council</a>
+</li>
+<li>
+  <span class="nwhen">Nov 25, 2026</span>
+  <a href="https://lanarkist.com/2026/11/25/freezing-rain-possibly-across-eastern-ontario-including-lanark-county-thursday-evening/" rel="noopener">Freezing rain possibly across Eastern Ontario, including Lanark County, Thursday evening</a>
+  <a class="tag" href="tags/environment.html">#environment</a> <a class="tag" href="tags/safety.html">#safety</a>
+</li>
+<li>
+  <span class="nwhen">Nov 25, 2026</span>
+  <a href="https://lanarkist.com/2026/11/25/perth-man-facing-six-charges-following-intimate-partner-violence-investigation/" rel="noopener">Perth man facing six charges following intimate partner violence investigation</a>
+  <a class="tag" href="tags/safety.html">#safety</a>
+</li>
+<li>
+  <span class="nwhen">Nov 25, 2026</span>
+  <a href="https://weather.gc.ca/warnings/report_e.html?onrm111" rel="noopener">SPECIAL WEATHER STATEMENT, Carleton Place</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/safety.html">#safety</a>
+</li>
+<li>
+  <span class="nwhen">Nov 25, 2026</span>
+  <a href="https://lanarkist.com/2026/11/25/new-mississippi-mills-holiday-toy-drive-aims-to-collect-1000-toys-for-local-children/" rel="noopener">New Mississippi Mills holiday toy drive aims to collect 1,000 toys for local children</a>
+  <a class="tag" href="tags/community.html">#community</a> <a class="tag" href="tags/events.html">#events</a>
+</li>
+<li>
+  <span class="nwhen">Nov 25, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/25/outgoing-chief-empey-says-smiths-falls-next-chief-understands-the-community/" rel="noopener">Outgoing chief Empey says Smiths Falls’ next chief understands the community</a>
+  <a class="tag" href="tags/community.html">#community</a> <a class="tag" href="tags/safety.html">#safety</a>
+</li>
+<li>
+  <span class="nwhen">Nov 25, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/25/smiths-falls-water-tower-removal-delayed-until-spring-2027/" rel="noopener">Smiths Falls water tower removal delayed until spring 2027</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/roads.html">#roads</a>
+</li>
+<li>
+  <span class="nwhen">Nov 25, 2026</span>
+  <a href="https://hometownnews.ca/perths-committee-of-the-whole-housing-rentals/" rel="noopener">Perth committee tackles housing, river rentals, community programs and municipal business</a>
+  <a class="tag" href="tags/housing.html">#housing</a> <a class="tag" href="tags/roads.html">#roads</a> <a class="tag" href="tags/business.html">#business</a> <a class="tag" href="tags/community.html">#community</a>
+</li>
+<li>
+  <span class="nwhen">Nov 25, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/25/smiths-falls-looking-for-homes-and-businesses-to-take-part-in-free-lead-testing/" rel="noopener">Smiths Falls looking for homes and businesses to take part in free lead testing</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/environment.html">#environment</a> <a class="tag" href="tags/health.html">#health</a>
+</li>
+<li>
+  <span class="nwhen">Nov 24, 2026</span>
+  <a href="https://hometownnews.ca/perth-century-old-stewart-park-trust-fund/" rel="noopener">Perth considers taking over century-old Stewart Park trust fund</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/council.html">#council</a>
+</li>
+<li>
+  <span class="nwhen">Nov 24, 2026</span>
+  <a href="https://beckwith.ca/2026-12-15-public-meeting/" rel="noopener">Notice of Public Meeting: December 15, 2026</a>
+  <a class="tag" href="tags/roads.html">#roads</a> <a class="tag" href="tags/development.html">#development</a>
+</li>
+<li>
+  <span class="nwhen">Nov 24, 2026</span>
+  <a href="https://lanarkist.com/2026/11/24/drummond-north-elmsley-man-facing-sexual-assault-cruelty-to-animal-charges-and-more-in-investigation-dating-back-to-2017/" rel="noopener">Drummond-North Elmsley man facing sexual assault, cruelty to animal charges and more in investigation dating back to 2017</a>
+  <a class="tag" href="tags/safety.html">#safety</a>
+</li>
+<li>
+  <span class="nwhen">Nov 24, 2026</span>
+  <a href="https://hometownnews.ca/build-a-mountain-of-food-smiths-falls-2026/" rel="noopener">Smiths Falls raises $22,374, collects 9,048 pounds at Build a Mountain of Food blitz</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/community.html">#community</a>
+</li>
+<li>
+  <span class="nwhen">Nov 24, 2026</span>
+  <a href="https://hometownnews.ca/smiths-falls-bears-loss-royals-brockville-victory/" rel="noopener">Bears shake off Pembroke loss with 5-1 victory in Brockville</a>
+  <a class="tag" href="tags/district.html">#district</a>
+</li>
+<li>
+  <span class="nwhen">Nov 24, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/24/whats-good-two-old-friends-are-bringing-the-laughs-home-to-smiths-falls/" rel="noopener">What’s Good? Two old friends are bringing the laughs home to Smiths Falls</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/events.html">#events</a>
+</li>
+<li>
+  <span class="nwhen">Nov 24, 2026</span>
+  <a href="https://carletonplace.ca/international-day-of-persons-with-disabilities" rel="noopener">International Day of Persons with Disabilities</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/community.html">#community</a> <a class="tag" href="tags/council.html">#council</a>
+</li>
+<li>
+  <span class="nwhen">Nov 24, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/24/former-econolodge-in-smiths-falls-to-become-comfort-inn-suites/" rel="noopener">Former EconoLodge in Smiths Falls to become Comfort Inn &amp; Suites</a>
+  <a class="tag" href="tags/business.html">#business</a> <a class="tag" href="tags/development.html">#development</a>
+</li>
+<li>
+  <span class="nwhen">Nov 24, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/24/the-man-behind-the-hockey-camera-in-smiths-falls-is-looking-for-a-kidney-donor/" rel="noopener">The man behind the hockey camera in Smiths Falls is looking for a kidney donor</a>
+  <a class="tag" href="tags/health.html">#health</a>
+</li>
+<li>
+  <span class="nwhen">Nov 23, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/23/whats-good-this-young-kiwanis-club-is-looking-for-a-few-more-neighbours-ready-to-make-a-difference/" rel="noopener">What’s Good? This young Kiwanis club is looking for a few more neighbours ready to make a difference</a>
+  <a class="tag" href="tags/community.html">#community</a>
+</li>
+<li>
+  <span class="nwhen">Nov 23, 2026</span>
+  <a href="https://hometownnews.ca/perths-newly-elected-council-begins-term/" rel="noopener">McPherson calls for new era of leadership as Perth council takes office</a>
+  <a class="tag" href="tags/council.html">#council</a>
+</li>
+<li>
+  <span class="nwhen">Nov 23, 2026</span>
+  <a href="https://hometownnews.ca/33-centre-street-smiths-falls-hotel-history/" rel="noopener">33 Centre Street: From the Tops to the Mariners Inn</a>
+  <a class="tag" href="tags/business.html">#business</a> <a class="tag" href="tags/development.html">#development</a>
+</li>
+<li>
+  <span class="nwhen">Nov 23, 2026</span>
+  <a href="https://hometownnews.ca/smiths-falls-new-council-swearing-in-2026/" rel="noopener">Bagpipes and a packed house welcome Smiths Falls’ new council</a>
+  <a class="tag" href="tags/council.html">#council</a> <a class="tag" href="tags/community.html">#community</a>
+</li>
+<li>
+  <span class="nwhen">Nov 23, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/23/carleton-place-youth-centre-offers-a-place-to-connect-learn-and-belong/" rel="noopener">Carleton Place Youth Centre offers a place to connect, learn and belong</a>
+  <a class="tag" href="tags/community.html">#community</a> <a class="tag" href="tags/schools.html">#schools</a>
+</li>
+<li>
+  <span class="nwhen">Nov 23, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/23/mississippi-mills-council-begins-new-four-year-term-with-inaugural-ceremony/" rel="noopener">Mississippi Mills Council begins new four-year term with inaugural ceremony</a>
+  <a class="tag" href="tags/council.html">#council</a>
+</li>
+<li>
+  <span class="nwhen">Nov 23, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/23/rcl-automotive-build-a-mountain-of-food/" rel="noopener">RCL Automotive Build a Mountain of Food: Smiths Falls delivers a mountain of generosity</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/community.html">#community</a>
+</li>
+<li>
+  <span class="nwhen">Nov 23, 2026</span>
+  <a href="https://hometownnews.ca/climate-concierge-program-smiths-falls-series/" rel="noopener">New Climate Concierge program begin Nov. 24 in Smiths Falls</a>
+  <a class="tag" href="tags/environment.html">#environment</a>
+</li>
+<li>
+  <span class="nwhen">Nov 23, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/23/filling-up-today-check-out-the-latest-gas-prices-2/" rel="noopener">Filling up today? Check out the latest Gas Prices</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/business.html">#business</a>
+</li>
+<li>
+  <span class="nwhen">Nov 23, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/23/perths-municipal-insurance-bill-climbs-five-per-cent-but-remains-within-budget/" rel="noopener">Perth’s municipal insurance bill climbs five per cent, but remains within budget</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/council.html">#council</a>
+</li>
+<li>
+  <span class="nwhen">Nov 22, 2026</span>
+  <a href="https://lanarkist.com/2026/11/22/seven-familiar-faces-four-more-years-carleton-place-mayor-talks-priorities-as-new-council-term-begins/" rel="noopener">Seven familiar faces, four more years: Carleton Place mayor talks priorities as new council term begins</a>
+  <a class="tag" href="tags/council.html">#council</a>
+</li>
+<li>
+  <span class="nwhen">Nov 22, 2026</span>
+  <a href="https://lanarkist.com/2026/11/22/road-closures-and-traffic-delays-week-ending-nov-29-2026r/" rel="noopener">Road closures and traffic delays, week ending Nov. 29, 2026</a>
+  <a class="tag" href="tags/roads.html">#roads</a>
+</li>
+<li>
+  <span class="nwhen">Nov 22, 2026</span>
+  <a href="https://lanarkist.com/2026/11/22/best-pet-store-in-the-lanark-region-2026/" rel="noopener">Best pet store in the Lanark region 2026</a>
+  <a class="tag" href="tags/business.html">#business</a>
+</li>
+<li>
+  <span class="nwhen">Nov 22, 2026</span>
+  <a href="https://lanarkleedstoday.ca/2026/11/22/whats-good-wanted-in-lanark-100-men-who-care/" rel="noopener">What’s good? Wanted in Lanark – 100 men who care</a>
+  <a class="tag" href="tags/safety.html">#safety</a> <a class="tag" href="tags/community.html">#community</a>
+</li>
+<li>
+  <span class="nwhen">Nov 21, 2026</span>
+  <a href="https://lanarkist.com/2026/11/21/carleton-place-invites-residents-to-light-up-the-night-with-annual-let-it-glow-tour/" rel="noopener">Carleton Place invites residents to light up the night with annual Let It Glow tour</a>
+  <a class="tag" href="tags/events.html">#events</a> <a class="tag" href="tags/community.html">#community</a>
+</li>
+<li>
+  <span class="nwhen">Jun 11, 2026</span>
+  <a href="https://www.lanarkcounty.ca/lanark_news/lanark-county-hosting-public-drop-in-events-for-transportation-master-plan-update/" rel="noopener">Lanark County hosting public drop-in events for Transportation Master Plan update</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/roads.html">#roads</a> <a class="tag" href="tags/development.html">#development</a>
+</li>
+<li>
+  <span class="nwhen">Jun 15, 2026</span>
+  <a href="https://www.lanarkcounty.ca/lanark_news/county-council-highlights-june-10-2026/" rel="noopener">County Council Highlights – June 10, 2026</a>
+  <a class="tag" href="tags/council.html">#council</a>
+</li>
+<li>
+  <span class="nwhen">Jun 26, 2026</span>
+  <a href="https://www.lanarkcounty.ca/lanark_news/business-retention-and-expansion-initiative/" rel="noopener">Business Retention and Expansion Initiative</a>
+  <a class="tag" href="tags/business.html">#business</a>
+</li>
+<li>
+  <span class="nwhen">Jul 14, 2026</span>
+  <a href="https://www.lanarkcounty.ca/lanark_news/natural-heritage-strategy-consultation/" rel="noopener">Natural Heritage Strategy Consultation</a>
+  <a class="tag" href="tags/development.html">#development</a> <a class="tag" href="tags/environment.html">#environment</a>
+</li>
+<li>
+  <span class="nwhen">Sep 1, 2026</span>
+  <a href="https://www.lanarkcounty.ca/lanark_news/county-council-highlights-august-26-2026/" rel="noopener">County Council Highlights – August 26, 2026</a>
+  <a class="tag" href="tags/council.html">#council</a> <a class="tag" href="tags/roads.html">#roads</a>
+</li>
+<li>
+  <span class="nwhen">Sep 4, 2026</span>
+  <a href="https://beckwith.ca/notice-of-meeting-to-present-the-financial-statements-for-the-year-2025/" rel="noopener">NOTICE OF MEETING TO PRESENT THE FINANCIAL STATEMENTS FOR THE YEAR 2025</a>
+  <a class="tag" href="tags/district.html">#district</a> <a class="tag" href="tags/council.html">#council</a>
+</li>
+<li>
+  <span class="nwhen">Sep 24, 2026</span>
+  <a href="https://www.lanarkcounty.ca/lanark_news/county-council-sept-16-2026/" rel="noopener">County Council Sept. 16, 2026</a>
+  <a class="tag" href="tags/council.html">#council</a>
+</li>
+<li>
+  <span class="nwhen">Sep 28, 2026</span>
+  <a href="https://www.lanarkcounty.ca/lanark_news/county-council-september-23-2026/" rel="noopener">County Council: September 23, 2026</a>
+  <a class="tag" href="tags/council.html">#council</a> <a class="tag" href="tags/business.html">#business</a>
+</li>
+<li>
+  <span class="nwhen">Oct 19, 2026</span>
+  <a href="https://www.lanarkcounty.ca/lanark_news/county-council-october-14-2026/" rel="noopener">County Council: October 14, 2026</a>
+  <a class="tag" href="tags/council.html">#council</a> <a class="tag" href="tags/business.html">#business</a>
+</li>
+<li>
+  <span class="nwhen">Nov 3, 2026</span>
+  <a href="https://carletonplace.ca/development-fee-changes-coming-january-1st-2027" rel="noopener">Development Fee Changes Coming January 1st, 2027</a>
+  <a class="tag" href="tags/development.html">#development</a> <a class="tag" href="tags/housing.html">#housing</a> <a class="tag" href="tags/council.html">#council</a>
+</li>
+<li>
+  <span class="nwhen">Nov 3, 2026</span>
+  <a href="https://carletonplace.ca/halloween-home-decorating-contest-winners" rel="noopener">Halloween Home Decorating Contest Winners</a>
+  <a class="tag" href="tags/events.html">#events</a>
+</li>
+  </ul>
+</section></div>
+<div class="col col-wom"><h3 class="colhead"><span class="sq"></span>Word of mouth</h3>
+  <p class="colid">What the district is talking about, as seen in local community groups — links go to the original discussions.</p>
+<p class="colid">checked 2026-11-28 12:07</p>
+<article class="thread">
+  <div class="twhen">2026-11-27</div>
+  <h4><a href="https://facebook.com/groups/661204194653339/permalink/2384098515697223/" rel="noopener">Lights flickering today</a></h4>
+  <p class="tgroup">Carleton Place Neighbours and Community · Carleton Place</p>
+  <p class="tmeta">15 comments · 2 reactions</p>
+</article>
+<article class="thread">
+  <div class="twhen">2026-11-26</div>
+  <h4><a href="https://facebook.com/groups/livingincarletonplace/permalink/2953941931641582/" rel="noopener">New e-bike rules coming to Carleton Place</a></h4>
+  <p class="tgroup">Living in Carleton Place · Carleton Place</p>
+  <p class="tmeta">51 comments · 62 reactions</p>
+</article>
+<article class="thread">
+  <div class="twhen">2026-11-26</div>
+  <h4><a href="https://facebook.com/groups/livingincarletonplace/permalink/2951079811927794/" rel="noopener">Trade-based college classes and certification barriers</a></h4>
+  <p class="tgroup">Living in Carleton Place · Carleton Place</p>
+  <p class="tmeta">32 comments · 7 reactions</p>
+</article>
+<article class="thread">
+  <div class="twhen">2026-11-26</div>
+  <h4><a href="https://facebook.com/groups/smithsfallstogether/permalink/29037389299297444/" rel="noopener">Planned power outage in Smiths Falls</a></h4>
+  <p class="tgroup">Smiths Falls Together! · Smiths Falls</p>
+  <p class="tmeta">11 comments · 2 reactions</p>
+</article>
+<article class="thread">
+  <div class="twhen">2026-11-25</div>
+  <h4><a href="https://facebook.com/groups/661204194653339/permalink/2381333722640369/" rel="noopener">Who owns the Sussex Street apartment building?</a></h4>
+  <p class="tgroup">Carleton Place Neighbours and Community · Carleton Place</p>
+  <p class="tmeta">16 comments · 0 reactions</p>
+</article>
+<article class="thread">
+  <div class="twhen">2026-11-25</div>
+  <h4><a href="https://facebook.com/groups/livingincarletonplace/permalink/2952542751781500/" rel="noopener">Accessible parking: &quot;I&#x27;ll only be a minute&quot; is no excuse</a></h4>
+  <p class="tgroup">Living in Carleton Place · Carleton Place</p>
+  <p class="tmeta">10 comments · 9 reactions</p>
+</article>
+<article class="thread">
+  <div class="twhen">2026-11-25</div>
+  <h4><a href="https://facebook.com/groups/mississippimillsfriends/permalink/2475862539488605/" rel="noopener">No water on Wolf Grove</a></h4>
+  <p class="tgroup">Friends in Mississippi Mills · Mississippi Mills</p>
+  <p class="tmeta">9 comments · 3 reactions</p>
+</article>
+<article class="thread">
+  <div class="twhen">2026-11-24</div>
+  <h4><a href="https://facebook.com/groups/mississippimillsfriends/permalink/2474228352985357/" rel="noopener">Should cats be leashed like dogs?</a></h4>
+  <p class="tgroup">Friends in Mississippi Mills · Mississippi Mills</p>
+  <p class="tmeta">67 comments · 72 reactions</p>
+</article>
+<article class="thread">
+  <div class="twhen">2026-11-24</div>
+  <h4><a href="https://facebook.com/groups/661204194653339/permalink/2379234529516955/" rel="noopener">Epsom salt price gap at Shoppers</a></h4>
+  <p class="tgroup">Carleton Place Neighbours and Community · Carleton Place</p>
+  <p class="tmeta">40 comments · 65 reactions</p>
+</article>
+<article class="thread">
+  <div class="twhen">2026-11-24</div>
+  <h4><a href="https://facebook.com/groups/mississippimillsfriends/permalink/2474590239615835/" rel="noopener">Hwy 29 paving complaints</a></h4>
+  <p class="tgroup">Friends in Mississippi Mills · Mississippi Mills</p>
+  <p class="tmeta">38 comments · 25 reactions</p>
+</article>
+<article class="thread">
+  <div class="twhen">2026-11-24</div>
+  <h4><a href="https://facebook.com/groups/smithsfallstogether/permalink/29009388822097492/" rel="noopener">Overnight parking tickets in Smiths Falls</a></h4>
+  <p class="tgroup">Smiths Falls Together! · Smiths Falls</p>
+  <p class="tmeta">38 comments · 10 reactions</p>
+</article>
+<article class="thread">
+  <div class="twhen">2026-11-24</div>
+  <h4><a href="https://facebook.com/groups/661204194653339/permalink/2379617059478702/" rel="noopener">Gas price gaps across Carleton Place</a></h4>
+  <p class="tgroup">Carleton Place Neighbours and Community · Carleton Place</p>
+  <p class="tmeta">27 comments · 21 reactions</p>
+</article>
+<article class="thread">
+  <div class="twhen">2026-11-24</div>
+  <h4><a href="https://facebook.com/groups/661204194653339/permalink/2379418552831886/" rel="noopener">Sick fox spotted on Park Avenue</a></h4>
+  <p class="tgroup">Carleton Place Neighbours and Community · Carleton Place</p>
+  <p class="tmeta">27 comments · 10 reactions</p>
+</article>
+<article class="thread">
+  <div class="twhen">2026-11-24</div>
+  <h4><a href="https://facebook.com/groups/mississippimillsfriends/permalink/2474384202969772/" rel="noopener">Who owns 10 Houston Drive?</a></h4>
+  <p class="tgroup">Friends in Mississippi Mills · Mississippi Mills</p>
+  <p class="tmeta">18 comments · 2 reactions</p>
+</article></div>
+<div class="col col-dir"><h3 class="colhead"><span class="sq"></span>Directory</h3>
+  <p class="colid">People and organizations of the district.</p>
+<article class="profile">
+  <div class="ptype">organization · Carleton Place</div>
+  <h4>Carleton Place Canoe Club</h4>
+  <p>Canada&#x27;s oldest continuously operating canoe club, founded in 1893 as the Ottawa Valley Canoe Association and reorganized under its present name in 1900. On the shores of the Mississippi River at Riverside Park, it has taught and raced paddlers of the district for over 130 years.</p>
+<ul>
+  <li>A charter member (1900) of the Canadian Canoe Association and the oldest club still in it; its first regatta ran at Lake Park in 1893.</li>
+  <li>Opened its membership to women in 1903 — among the first clubs anywhere to do so — and early ladies&#x27; war canoe championships were raced here.</li>
+  <li>A working origin of the town&#x27;s paddling culture: sprint, high-performance, dragon boat and Paddle-ALL programs have produced numerous Canadian champions.</li>
+</ul>
+  <div><a class="plink" href="https://www.cpcanoeclub.com/" rel="noopener">cpcanoeclub.com ↗</a></div>
+</article>
+<article class="profile">
+  <div class="ptype">organization · Ashton · Carleton Place</div>
+  <h4>Thomas Cavanagh Construction Limited</h4>
+  <p>Eastern Ontario contractor and aggregates producer — construction, asphalt, concrete, land development and homebuilding — founded in 1953 by Thomas Cavanagh with a single dump truck. More than 1,200 employees across three divisions.</p>
+<ul>
+  <li>Head office on Highway 7 in Ashton since 1984; a concrete plant (Cavanagh Concrete) operates at 205 Industrial Avenue in Carleton Place.</li>
+  <li>Rebuilt the historic mill in Almonte as the Enerdu hydroelectric facility, completed 2018.</li>
+  <li>Founder&#x27;s $1,000,000 gift to the Carleton Place &amp; District Memorial Hospital named its emergency wing; the Thomas Cavanagh Foundation continues the giving.</li>
+</ul>
+  <div><a class="plink" href="https://thomascavanagh.ca/" rel="noopener">thomascavanagh.ca ↗</a></div>
+</article></div>
+</div>
+  <footer>A Metaviews initiative · <a href="about.html">About</a></footer>
+</div>
+</body>
+</html>
